@@ -22,21 +22,11 @@ Pair sortAndGetMinMax(int arr[], int arrLength) {
 }
 
 Pair minHeapHeapSelectMinMax(int arr[], int arrLength) {
-  Pair method1;
-  sort(arr, arr + arrLength);
-  method1.kthMin = arr[k - 1];
-  method1.kthMax = arr[arrLength - k - 1];
 
-  return method1;
 }
 
 int main() {
   int arr[] = {0, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   Pair kthMinMaxMethod1 = sortAndGetMinMax(arr, sizeof(arr)/sizeof(arr[0]));
   cout <<"Method1: sort and get => K = "<< k <<" KthMin:"<< kthMinMaxMethod1.kthMin << " KthMax: "<< kthMinMaxMethod1.kthMax << endl;
-
-  // int arr[] = {0, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  // Pair kthMinMaxMethod1 = minHeapHeapSelectMinMax(arr, sizeof(arr)/sizeof(arr[0]));
-  // cout <<"Method1: sort and get => K = "<< k <<" KthMin:"<< kthMinMaxMethod1.kthMin << " KthMax: "<< kthMinMaxMethod1.kthMax << endl;
-  // return 0;
 }
