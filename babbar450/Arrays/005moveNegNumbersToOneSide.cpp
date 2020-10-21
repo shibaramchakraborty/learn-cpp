@@ -1,33 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int arr[10] = {1, -2, 3, -4, -5, 6, 7, -8, 9, 10};
+int arr[11] = {-9, 1, -2, 3, -4, -5, 6, 7, -8, 9, 10};
 
-int nextNeg(int currentIndex) {
-  for (int i = currentIndex; i < sizeof(arr)/sizeof(arr[0]); i++) {
-    if (arr[i] < 0) return i;
+void shiftall(int arr[], int left, int right) {
+  //left pointer start from the begining of the array while right from the end.
+  while (left < right) {
+    if(arr[left] < 0 && arr[right] > 0) left++;
+    else if (arr[left] > 0 && arr[right] < 0) {
+      swap(arr[left], arr[right]);
+      left++;
+      right--;
+    } else if (arr[left] > 0 && arr[right] > 0) right --;
+    else {
+      left++;
+      right--;
+    }
   }
 }
 
-int nextPos(int currentIndex) {
-  for (int i = currentIndex; i < sizeof(arr)/sizeof(arr[0]); i++) {
-    if (arr[i] > 0) return i;
-  }
+void print(int arr[], int length) {
+  for (int i = 0; i < length; i++) cout << arr[i] << " ";
+  cout << endl;
 }
 
 int main() {
-  int indexNeg = nextNeg(0), indexPos = nextPos(0);
-
-  while ((indexNeg < sizeof(arr)/sizeof(arr[0])) || (indexPos < sizeof(arr)/sizeof(arr[0]))) {
-    int temp = arr[indexNeg];
-    arr[indexNeg] = arr[indexPos];
-    arr[indexPos] = temp;
-
-    indexPos = nextPos(indexPos + 1);
-    indexNeg = nextNeg(indexNeg + 1);
-  }
-
-  for (int i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) cout << arr[i] << " ";
+  shiftall(arr,0, sizeof(arr)/sizeof(arr[0]));
+  print(arr, sizeof(arr)/sizeof(arr[0]));
 
   return 0;
 }
