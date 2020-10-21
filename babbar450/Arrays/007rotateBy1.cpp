@@ -4,16 +4,21 @@ using namespace std;
 int arr[5] = {1, 2, 3, 4, 5};
 
 int main() {
-  int temp1 = arr[0];
-  int temp2 = 0;
+  if (sizeof(arr)/sizeof(arr[0]) < 2) {
+    for (int i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) cout << arr[i] << " ";
 
-  for (int i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) {
-    temp2 = arr[(i+1) % sizeof(arr)/sizeof(arr[0])];
-    cout << temp1 << temp2 << endl;
-    arr[(i+1) % sizeof(arr)/sizeof(arr[0])] = temp1;
-    temp1 = temp2;
+    cout << endl;
+
+    return 0;
   }
 
+  int prev = arr[0], next = arr[1];
+
+  for (int i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) {
+    arr[(i+1) % (sizeof(arr)/sizeof(arr[0]))] = prev;
+    prev = next;
+    next = arr[(i+2)% (sizeof(arr)/sizeof(arr[0]))];
+  }
 
   for (int i = 0; i < sizeof(arr)/sizeof(arr[0]); i++) cout << arr[i] << " ";
 
